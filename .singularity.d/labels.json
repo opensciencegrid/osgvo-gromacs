@@ -1,0 +1,7 @@
+{
+    "opensciencegrid.name": "GROMACS",
+    "opensciencegrid.description": "A versatile package to perform molecular dynamics, i.e. simulate the Newtonian equations of motion for systems with hundreds to millions of particles.",
+    "opensciencegrid.url": "http://www.gromacs.org/",
+    "opensciencegrid.category": "Tools",
+    "opensciencegrid.definition_url": "https://github.com/opensciencegrid/osgvo-gromacs"
+}

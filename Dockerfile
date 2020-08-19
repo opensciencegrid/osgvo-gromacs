@@ -1,6 +1,10 @@
 FROM gromacs/gromacs
 
-MAINTAINER Mats Rynge <rynge@isi.edu>
+LABEL opensciencegrid.name="GROMACS"
+LABEL opensciencegrid.description="A versatile package to perform molecular dynamics, i.e. simulate the Newtonian equations of motion for systems with hundreds to millions of particles."
+LABEL opensciencegrid.url="http://www.gromacs.org/"
+LABEL opensciencegrid.category="Tools"
+LABEL opensciencegrid.definition_url="https://github.com/opensciencegrid/osgvo-gromacs"
 
 # extra packages we need
 RUN export DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true && \
@@ -8,15 +12,28 @@ RUN export DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true && \
         build-essential \
         cmake \
         curl \
-        python-pip \
+        python3 \
+        python3-markdown \
+        python3-pip \
+        python3-requests \
+        python3-tk \
+        python3-yaml \
+        wget \
         && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
+# CA certs
+RUN mkdir -p /etc/grid-security && \
+    cd /etc/grid-security && \
+    wget -nv https://download.pegasus.isi.edu/containers/certificates.tar.gz && \
+    tar xzf certificates.tar.gz && \
+    rm -f certificates.tar.gz
+
 # stashcp
-RUN pip install --upgrade pip==9.0.3 && \
-    pip install setuptools && \
-    pip install stashcp
+RUN pip3 install --upgrade pip==9.0.3 && \
+    pip3 install setuptools && \
+    pip3 install stashcp
 
 # required directories
 RUN for MNTPOINT in \
