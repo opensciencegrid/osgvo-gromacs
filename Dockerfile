@@ -1,4 +1,4 @@
-FROM gromacs/gromacs
+FROM gromacs/gromacs:2018.4
 
 LABEL opensciencegrid.name="GROMACS"
 LABEL opensciencegrid.description="A versatile package to perform molecular dynamics, i.e. simulate the Newtonian equations of motion for systems with hundreds to millions of particles."
